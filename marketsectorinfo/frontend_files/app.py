@@ -2,7 +2,39 @@
 import streamlit as st
 import requests
 
-st.title("Market SECTOR Business Analysis System")
+st.title("Welcome! \"India International Market And Business Information\"")
+st.header("Thanks for choosing SUMAN KOMARLA ADINARAYANA Business Analysis And Information Consultancy")
+st.subheader("Market SECTOR Business Analysis System")
+st.text("Step 0 Of 7")
+st.markdown("Step 0 - Raw Dataset Preparation")
+st.write("Chatbot Output")
+
+# 3. Handle Text Input
+user_input = st.text_area("Your Input Text", placeholder="Type or paste your text here...")
+
+if st.button("Generate Raw Data - ALGO by Suman Komarla Adinarayana"):
+    if user_input.strip() == "":
+        st.warning("Please enter some text first!")
+    else:
+        with st.spinner("Processing text with Hugging Face..."):
+            # Run model inference
+            st.write(user_input)
+
+# 3. Handle Text Input
+user_ai_input = st.text_area("Your chat Text", placeholder="Type or paste your chat text here...")
+
+if st.button("CHATwithAI built by SUMAN KOMARLA ADINARAYANA"):
+    if user_input.strip() == "":
+        st.warning("Please enter some text first!")
+    else:
+        with st.spinner("Processing text with Hugging Face..."):
+            # Run model inference
+            st.write(f"ChatwithAI Output: **{user_ai_input}**")
+            st.success("Success!")
+
+st.text("Step 1 Of 7")
+st.markdown("Step 1 - Dataset Preparation")
+st.write("Chatbot Output")
 
 # Input fields for product and store data
 Sl_No = st.number_input("Sl_No", min_value=0.0, value=1000000.00)
