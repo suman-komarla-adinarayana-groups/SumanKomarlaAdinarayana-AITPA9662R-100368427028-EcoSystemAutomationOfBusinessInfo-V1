@@ -2,12 +2,56 @@
 import streamlit as st
 import requests
 
+#Install all the libraries
+#%pip install -qU langchain-groq
+
+#!pip install -q langchain \
+#                langchainhub==0.1.20 \
+#                langchain-experimental==0.0.62\
+#                langchain_huggingface\
+#                langchain-groq
+
+#from google.colab import userdata
+#from langchain_groq import ChatGroq  # Import Groq LLM
+
+# Get the API key from Colab secrets
+#groq_api_key = userdata.get('GROQ_API_KEY') #Complete the code by calling the API key
+
+from langchain_huggingface import HuggingFacePipeline
+from transformers import pipeline
+
+
+# 2. Setup Streamlit UI components
+#user_input = st.text_input("Ask something:")
+
+#if user_input:
+#    with st.spinner("Generating..."):
+#        # Invoke your model through LangChain
+#        response = llm.invoke(user_input)
+#        st.write(response)
+
+
+
 st.title("Welcome! \"India International Market And Business Information\"")
 st.header("Thanks for choosing SUMAN KOMARLA ADINARAYANA Business Analysis And Information Consultancy")
 st.subheader("Market SECTOR Business Analysis System")
 st.text("Step 0 Of 7")
 st.markdown("Step 0 - Raw Dataset Preparation")
 st.write("Chatbot Output")
+
+
+st.markdown("LangChain + Streamlit App")
+
+# 1. Initialize a Hugging Face pipeline locally or via API
+@st.cache_resource # Caches the model so it doesn't reload on every click
+def load_model():
+    # Example using a small text generation model
+    hf_pipe = pipeline("text-generation", model="gpt2", max_new_tokens=50)
+#    hf_pipe = pipeline("text-generation", model="meta-llama/llama-4-scout-17b-16e-instruct", max_new_tokens=50)
+    return HuggingFacePipeline(pipeline=hf_pipe)
+
+llm = load_model()
+
 
 # 3. Handle Text Input
 user_input = st.text_area("Your Input Text", placeholder="Type or paste your text here...")
@@ -24,12 +68,14 @@ if st.button("Generate Raw Data - ALGO by Suman Komarla Adinarayana"):
 user_ai_input = st.text_area("Your chat Text", placeholder="Type or paste your chat text here...")
 
 if st.button("CHATwithAI built by SUMAN KOMARLA ADINARAYANA"):
-    if user_input.strip() == "":
+    if user_ai_input.strip() == "":
         st.warning("Please enter some text first!")
     else:
         with st.spinner("Processing text with Hugging Face..."):
             # Run model inference
-            st.write(f"ChatwithAI Output: **{user_ai_input}**")
+            response = llm.invoke(user_ai_input)
+            #print("\n\n\n","[",i+1,"]", "iteration output \n\n\n",response)
+            st.write(f"ChatwithAI Output: **{response}**")
             st.success("Success!")
 
 st.text("Step 1 Of 7")
