@@ -21,6 +21,9 @@ from langchain_huggingface import HuggingFacePipeline
 from transformers import pipeline
 
 
+
+
+
 # 2. Setup Streamlit UI components
 #user_input = st.text_input("Ask something:")
 
@@ -33,14 +36,48 @@ from transformers import pipeline
 
 
 st.title("Welcome! \"India International Market And Business Information\"")
+st.page_link("https://github.com/suman-komarla-adinarayana-groups/SumanKomarlaAdinarayana-AITPA9662R-100368427028-EcoSystemAutomationOfBusinessInfo-V1", label="https://github.com/suman-komarla-adinarayana-groups", icon="🌎")
 st.header("Thanks for choosing SUMAN KOMARLA ADINARAYANA Business Analysis And Information Consultancy")
 st.subheader("Market SECTOR Business Analysis System")
 st.text("Step 0 Of 7")
 st.markdown("Step 0 - Raw Dataset Preparation")
 st.write("Chatbot Output")
 
+#Start of Chatbot GUI
 
 st.markdown("LangChain + Streamlit App")
+
+# --- SIDEBAR ARRANGEMENT ---
+with st.sidebar:
+    st.title("🤖 Bot Settings")
+
+    # Secure field for Hugging Face Token (Get it from: hf.co/settings/tokens)
+    hf_token = st.text_input("Hugging Face API Token", type="password", help="Insert your HF Read Access Token.")
+
+    # Dropdown choice for the Hugging Face model endpoint
+    model_choice = st.selectbox(
+        "Choose LLM Model",
+        options=[
+            "meta-llama/Llama-3.1-8B-Instruct",
+            "mistralai/Mistral-7B-Instruct-v0.3",
+            "microsoft/Phi-3-mini-4k-instruct"
+        ]
+    )
+
+# Custom system instructions to shape the bot's behavior
+system_prompt = st.text_area(
+    "System Prompt",
+    value="You are a helpful, brief, and friendly AI assistant."
+  )
+
+# Reset button to wipe out session memory
+if st.button("🧹 Clear Conversation History"):
+    st.session_state.messages = []
+    st.rerun()
+
+
+
+
 
 # 1. Initialize a Hugging Face pipeline locally or via API
 @st.cache_resource # Caches the model so it doesn't reload on every click
