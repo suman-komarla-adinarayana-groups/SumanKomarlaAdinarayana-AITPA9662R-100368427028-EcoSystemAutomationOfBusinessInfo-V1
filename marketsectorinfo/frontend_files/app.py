@@ -20,14 +20,7 @@ import requests
 from langchain_huggingface import HuggingFacePipeline
 from transformers import pipeline
 
-# pip install litellm
-import litellm
 
-def get_all_provider_models():
-    # Returns a dynamic list of all models supported by litellm
-    return litellm.model_list
-
-st.write(get_all_provider_models())
 
 
 
@@ -57,6 +50,15 @@ st.markdown("LangChain + Streamlit App")
 # --- SIDEBAR ARRANGEMENT ---
 with st.sidebar:
     st.title("🤖 Bot Settings")
+
+    # pip install litellm
+    import litellm
+
+    def get_all_provider_models():
+        # Returns a dynamic list of all models supported by litellm
+        return litellm.model_list
+
+    st.write(get_all_provider_models())
 
     # Secure field for Hugging Face Token (Get it from: hf.co/settings/tokens)
     hf_token = st.text_input("Hugging Face API Token", type="password", help="Insert your HF Read Access Token.")
