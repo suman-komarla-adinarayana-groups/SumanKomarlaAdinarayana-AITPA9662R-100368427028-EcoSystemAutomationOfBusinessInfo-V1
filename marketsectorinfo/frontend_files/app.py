@@ -20,7 +20,26 @@ import requests
 from langchain_huggingface import HuggingFacePipeline
 from transformers import pipeline
 
+# pip install huggingface_hub
+from huggingface_hub import HfApi
 
+def get_dynamic_model_list(limit=5):
+    api = HfApi()
+    
+    # Dynamically fetch top models sorted by trending status
+    models = api.list_models(
+        filter="text-generation",
+        sort="trending",
+        limit=limit
+    )
+    
+    model_list = [model.id for model in models]
+    return model_list
+
+# Generate list dynamically at runtime
+active_models = get_dynamic_model_list()
+st.write(active_models)
+#print("Top available models for deployment:", active_models)
 
 
 
@@ -65,17 +84,7 @@ with st.sidebar:
     )
 
 
-# Create the popover container
-with st.popover("Open Filter Options"):
-    st.markdown("### Filter Settings")
-    status = st.selectbox("Select Status", ["NSE", "BSE", "Others"])
-    date_range = st.date_input("Choose Date Range")
-    
-    # Action inside popover
-    submitted = st.button("Apply Filters")
 
-if submitted:
-    st.write(f"Filters applied: {status} for dates {date_range}")
 
 
 
@@ -136,9 +145,27 @@ if st.button("CHATwithAI built by SUMAN KOMARLA ADINARAYANA"):
             st.write(f"ChatwithAI Output: **{response}**")
             st.success("Success!")
 
-st.text("Step 1 Of 7")
-st.markdown("Step 1 - Dataset Preparation")
 st.write("Chatbot Output")
+
+st.text("Step 1 Of 7")
+
+st.markdown("Step 1 - Dataset Preparation")
+
+# Create the popover container
+with st.popover("Open Filter Options"):
+    st.markdown("### Filter Settings")
+    status = st.selectbox("Select Status", ["NSE", "BSE", "Others"])
+    date_range = st.date_input("Choose Date Range")
+    
+    # Action inside popover
+    submitted = st.button("Apply Filters")
+
+if submitted:
+    st.write(f"Filters applied: {status} for dates {date_range}")
+
+
+
+
 
 # Input fields for product and store data
 Sl_No = st.number_input("Sl_No", min_value=0.0, value=1000000.00)
