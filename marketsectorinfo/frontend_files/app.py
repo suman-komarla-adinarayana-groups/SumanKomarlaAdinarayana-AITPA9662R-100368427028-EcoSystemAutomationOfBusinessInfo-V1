@@ -20,26 +20,14 @@ import requests
 from langchain_huggingface import HuggingFacePipeline
 from transformers import pipeline
 
-# pip install huggingface_hub
-from huggingface_hub import HfApi
+# pip install litellm
+import litellm
 
-def get_dynamic_model_list(limit=5):
-    api = HfApi()
-    
-    # Dynamically fetch top models sorted by trending status
-    models = api.list_models(
-        filter="text-generation",
-        sort="trending",
-        limit=limit
-    )
-    
-    model_list = [model.id for model in models]
-    return model_list
+def get_all_provider_models():
+    # Returns a dynamic list of all models supported by litellm
+    return litellm.model_list
 
-# Generate list dynamically at runtime
-active_models = get_dynamic_model_list()
-st.write(active_models)
-#print("Top available models for deployment:", active_models)
+st.write(get_all_provider_models())
 
 
 
