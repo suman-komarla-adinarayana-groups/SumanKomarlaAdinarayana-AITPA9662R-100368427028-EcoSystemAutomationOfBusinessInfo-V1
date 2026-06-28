@@ -19,3 +19,4 @@ langchain-experimental
 langchain_huggingface
 transformers
 torch
+litellm
