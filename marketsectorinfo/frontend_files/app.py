@@ -64,6 +64,27 @@ with st.sidebar:
         ]
     )
 
+
+# Create the popover container
+with st.popover("Open Filter Options"):
+    st.markdown("### Filter Settings")
+    status = st.selectbox("Select Status", ["NSE", "BSE", "Others"])
+    date_range = st.date_input("Choose Date Range")
+    
+    # Action inside popover
+    submitted = st.button("Apply Filters")
+
+if submitted:
+    st.write(f"Filters applied: {status} for dates {date_range}")
+
+
+
+
+
+
+
+
+
 # Custom system instructions to shape the bot's behavior
 system_prompt = st.text_area(
     "System Prompt",
