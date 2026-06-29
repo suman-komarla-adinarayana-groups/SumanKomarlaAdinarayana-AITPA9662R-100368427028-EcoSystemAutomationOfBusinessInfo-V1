@@ -144,9 +144,9 @@ st.markdown("Step 1 - Dataset Preparation")
 # Create the popover container
 with st.popover("Open Filter Options"):
     st.markdown("### Filter Settings")
-    status = st.selectbox("Select Status", ["NSE", "BSE", "Others"])
+    status = st.selectbox("Select Status", ["NSE", "BSE","International Stock Exchanges List","Forex","World Trade Data", "Others"])
     date_range = st.date_input("Choose Date Range")
-    
+
     # Action inside popover
     submitted = st.button("Apply Filters")
 
