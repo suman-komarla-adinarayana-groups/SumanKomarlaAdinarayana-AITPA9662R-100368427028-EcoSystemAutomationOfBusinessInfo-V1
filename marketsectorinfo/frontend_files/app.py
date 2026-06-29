@@ -59,7 +59,7 @@ with st.sidebar:
         return litellm.model_list
 
     st.write(get_all_provider_models())
-    get_all_provider_models_list = get_all_provider_models
+    get_all_provider_models_list = get_all_provider_models()
 
 
     # Secure field for Hugging Face Token (Get it from: hf.co/settings/tokens)
