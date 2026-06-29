@@ -84,7 +84,7 @@ with st.sidebar:
 
 
     # Secure field for Hugging Face Token (Get it from: hf.co/settings/tokens)
-    hf_token = st.text_input("Hugging Face API Token", type="password", help="Insert your HF Read Access Token.")
+    hf_token_sidebar = st.text_input("Hugging Face API Token", type="password", help="Insert your HF Read Access Token.")
 
     # Dropdown choice for the Hugging Face model endpoint
     model_choice = st.selectbox(
