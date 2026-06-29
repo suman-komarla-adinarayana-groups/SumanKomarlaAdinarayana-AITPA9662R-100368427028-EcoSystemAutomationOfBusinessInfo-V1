@@ -59,6 +59,8 @@ with st.sidebar:
         return litellm.model_list
 
     st.write(get_all_provider_models())
+    get_all_provider_models_list = get_all_provider_models
+
 
     # Secure field for Hugging Face Token (Get it from: hf.co/settings/tokens)
     hf_token = st.text_input("Hugging Face API Token", type="password", help="Insert your HF Read Access Token.")
@@ -66,11 +68,7 @@ with st.sidebar:
     # Dropdown choice for the Hugging Face model endpoint
     model_choice = st.selectbox(
         "Choose LLM Model",
-        options=[
-            "meta-llama/Llama-3.1-8B-Instruct",
-            "mistralai/Mistral-7B-Instruct-v0.3",
-            "microsoft/Phi-3-mini-4k-instruct"
-        ]
+        get_all_provider_models_list
     )
 
 
