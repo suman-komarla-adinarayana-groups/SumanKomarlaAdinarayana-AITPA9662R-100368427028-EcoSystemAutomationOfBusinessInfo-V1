@@ -79,7 +79,7 @@ with st.sidebar:
         # Returns a dynamic list of all models supported by litellm
         return litellm.model_list
 
-    st.write(get_all_provider_models())
+#    st.write(get_all_provider_models())
     get_all_provider_models_list = get_all_provider_models()
 
 
