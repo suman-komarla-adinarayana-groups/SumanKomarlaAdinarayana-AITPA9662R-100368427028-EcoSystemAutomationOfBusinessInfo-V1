@@ -27,13 +27,13 @@ from transformers import pipeline
 
 # 1. Safely retrieve the token using st.secrets
 # Falls back to os.environ if deployed directly on Hugging Face Spaces
-try:
-    st_hf_token = st.text_input("st_hf_token:")
-except KeyError:
-    import os
-    st_hf_token = os.getenv("myhfsecret_SumanKomarlaAdinarayana_AITPA9662R100368427028EcoSystemAutomationOfBusinessInfoV1")
+#try:
+#    st_hf_token = st.text_input("st_hf_token:")
+#except KeyError:
+#    import os
+#    st_hf_token = os.getenv("myhfsecret_SumanKomarlaAdinarayana_AITPA9662R100368427028EcoSystemAutomationOfBusinessInfoV1")
 
-st.write(st_hf_token)
+#st.write(st_hf_token)
 
 #if not st_hf_token:
 #    st.error("Please configure your st_hf_token secret.")
@@ -124,7 +124,7 @@ if st.button("🧹 Clear Conversation History"):
 @st.cache_resource # Caches the model so it doesn't reload on every click
 def load_model():
     # Example using a small text generation model
-    hf_pipe = pipeline("text-generation", model="meta-llama/llama-4-scout-17b-16e-instruct",token = st_hf_token, max_new_tokens=50)
+    hf_pipe = pipeline("text-generation", model="gpt2", max_new_tokens=50)
 #    hf_pipe = pipeline("text-generation", model="meta-llama/llama-4-scout-17b-16e-instruct", max_new_tokens=50)
     return HuggingFacePipeline(pipeline=hf_pipe)
 
