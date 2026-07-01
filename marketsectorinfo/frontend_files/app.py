@@ -34,8 +34,8 @@ from transformers import pipeline
 #    import os
 #    st_hf_token = os.getenv("myhfsecret_SumanKomarlaAdinarayana_AITPA9662R100368427028EcoSystemAutomationOfBusinessInfoV1")
 
-st_hf_token = st.secrets.st_hf_token
-st.write(st_hf_token)
+#st_hf_token = st.secrets.st_hf_token
+#st.write(st_hf_token)
 
 #if not st_hf_token:
 #    st.error("Please configure your st_hf_token secret.")
