@@ -124,7 +124,7 @@ if st.button("🧹 Clear Conversation History"):
 @st.cache_resource # Caches the model so it doesn't reload on every click
 def load_model():
     # Example using a small text generation model
-    hf_pipe = pipeline("text-generation", model="gpt2", max_new_tokens=50)
+    hf_pipe = pipeline("text-generation", model="meta-llama/llama-4-scout-17b-16e-instruct",token = st_hf_token, max_new_tokens=50)
 #    hf_pipe = pipeline("text-generation", model="meta-llama/llama-4-scout-17b-16e-instruct", max_new_tokens=50)
     return HuggingFacePipeline(pipeline=hf_pipe)
 
