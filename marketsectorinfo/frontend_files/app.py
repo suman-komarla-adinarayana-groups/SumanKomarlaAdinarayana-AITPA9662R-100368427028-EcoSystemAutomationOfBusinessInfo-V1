@@ -27,11 +27,13 @@ from transformers import pipeline
 
 # 1. Safely retrieve the token using st.secrets
 # Falls back to os.environ if deployed directly on Hugging Face Spaces
-#try:
-#    hf_token = st.secrets["myhfsecret_SumanKomarlaAdinarayana_AITPA9662R100368427028EcoSystemAutomationOfBusinessInfoV1"]
-#except KeyError:
-#    import os
-#    hf_token = os.getenv("myhfsecret_SumanKomarlaAdinarayana_AITPA9662R100368427028EcoSystemAutomationOfBusinessInfoV1")
+try:
+    hf_token = st.secrets["myhfsecret_SumanKomarlaAdinarayana_AITPA9662R100368427028EcoSystemAutomationOfBusinessInfoV1"]
+except KeyError:
+    import os
+    hf_token = os.getenv("myhfsecret_SumanKomarlaAdinarayana_AITPA9662R100368427028EcoSystemAutomationOfBusinessInfoV1")
+
+st.write(hf_token)
 
 #if not hf_token:
 #    st.error("Please configure your HF_TOKEN secret.")
